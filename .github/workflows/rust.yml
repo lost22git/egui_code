@@ -1,0 +1,39 @@
+name: Rust
+
+on:
+  workflow_dispatch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  CARGO_TERM_COLOR: always
+jobs:
+  build:
+    name: build app on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build
+        run: cargo build --profile opt --verbose
+      
+      - name: Upload binary
+        if: matrix.os != 'windows-latest'
+        uses: actions/upload-artifact@v2
+        with:
+          name: egui_code-${{ matrix.os }}
+          path: target/opt/egui_code
+          
+      - name: Upload binary
+        if: matrix.os == 'windows-latest'
+        uses: actions/upload-artifact@v2
+        with:
+          name: egui_code-${{ matrix.os }}.exe
+          path: target\opt\egui_code.exe
+
+
