@@ -1,0 +1,33 @@
+###############################################################################
+## 
+## https://rust-lang.github.io/rustfmt/?master&search=
+## 
+###############################################################################
+binop_separator = "Front"
+brace_style = "SameLineWhere"
+color = "Auto"
+combine_control_expr = false           # custom:
+condense_wildcard_suffixes = false
+control_brace_style = "AlwaysSameLine"
+disable_all_formatting = false
+empty_item_single_line = false         # custom: dev => false
+fn_params_layout = "Vertical"          # custom: dev => Vertical, default => Tall
+fn_single_line = false                 # custom:
+format_generated_files = false         # custom:
+format_strings = false
+hard_tabs = false
+hide_parse_errors = false
+imports_indent = "Block"
+imports_layout = "Mixed"               # custom: dev => Vertical, default => Mixed
+indent_style = "Block"
+merge_derives = true
+newline_style = "Unix"                 # custom:
+normalize_doc_attributes = true        # custom:
+reorder_imports = true
+space_after_colon = true
+space_before_colon = false
+spaces_around_ranges = false
+struct_lit_single_line = false         # custom:
+tab_spaces = 2
+trailing_comma = "Always"              # custom: dev => Always, default => Vertical
+trailing_semicolon = true
