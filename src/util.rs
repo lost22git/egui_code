@@ -90,14 +90,16 @@ pub fn guess_line_ending(text: &str,) -> LineEnding {
 // 其他
 ///////////////////////////////////////////////
 pub fn open_in_native(path: &Path,) {
-  let path_str = path.to_string_lossy();
   #[cfg(target_os = "windows")]
   let _ = Command::new("explorer.exe",)
-    .arg(format!("/select,{path_str}"),)
+    .arg(format!("/select,{}", path.to_string_lossy()),)
     .spawn();
 
   #[cfg(not(target_os = "windows"))]
-  let _ = Command::new("open",).arg("-R",).arg(path_str,).spawn();
+  let _ = Command::new("open",)
+    .arg("-R",)
+    .arg(path.as_os_str(),)
+    .spawn();
 }
 
 pub fn open_native_file_dialog() -> Option<std::path::PathBuf,> {
