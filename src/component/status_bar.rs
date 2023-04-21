@@ -178,7 +178,7 @@ impl StatusBar {
             },);
 
           // 中间部分
-          egui::CentralPanel::default().show_inside(ui, |ui| {
+          ui::central_panel(ui.ctx(),).show_inside(ui, |ui| {
             egui::ScrollArea::horizontal()
               .stick_to_right(true,)
               .show(ui, |ui| {
